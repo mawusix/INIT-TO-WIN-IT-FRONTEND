@@ -8,8 +8,7 @@ import { Label } from '@/components/ui/label';
 import { RadioGroup, RadioGroupItem } from '@/components/ui/radio-group';
 import { quizQuestions } from '@/data/quizQuestions';
 import { useUser } from '@/context/UserContext';
-import Lottie from "lottie-react";
-import sleepingDogAnimation from "../components/Sleeping-dog.json";
+import logo from "../components/mindful circle.png";
 
 enum OnboardingStep {
   WELCOME,
@@ -59,8 +58,8 @@ const Onboarding = () => {
         <CardContent className="text-center space-y-4">
           <p className="text-muted-foreground">Let's start your journey to feeling more in control.</p>
           <div className="py-6">
-            <div className="w-24 h-24 bg-primary/20 rounded-full flex items-center justify-center mx-auto">
-              <span className="text-4xl">🌱</span>
+            <div className="w-100 h-100 20 rounded-full flex items-center justify-center mx-auto">
+            <img src={logo} alt="Logo" className="w-100 h-150 object-contain" />
             </div>
             <div className="bg-green-100 text-purple-700 rounded-md p-4 mt-4">
              <p>Begin your wellness journey with a personal pet companion who will help you track and improve your mental wellbeing.</p>
@@ -140,6 +139,26 @@ const Onboarding = () => {
                 >
                   <span className="text-4xl">🦊</span>
                   <span className="mt-2 font-normal">Fox</span>
+                </Label>
+              </div>
+              <div>
+                <RadioGroupItem value="snake" id="snake" className="peer sr-only" />
+                <Label
+                  htmlFor="fox"
+                  className="flex flex-col items-center justify-between rounded-md border-2 border-muted bg-popover p-4 hover:bg-accent hover:text-accent-foreground peer-data-[state=checked]:border-primary [&:has([data-state=checked])]:border-primary"
+                >
+                  <span className="text-4xl">🐍</span>
+                  <span className="mt-2 font-normal">Snake</span>
+                </Label>
+              </div>
+              <div>
+                <RadioGroupItem value="fish" id="fish" className="peer sr-only" />
+                <Label
+                  htmlFor="fox"
+                  className="flex flex-col items-center justify-between rounded-md border-2 border-muted bg-popover p-4 hover:bg-accent hover:text-accent-foreground peer-data-[state=checked]:border-primary [&:has([data-state=checked])]:border-primary"
+                >
+                  <span className="text-4xl">🐠</span>
+                  <span className="mt-2 font-normal">Fish</span>
                 </Label>
               </div>
             </RadioGroup>
