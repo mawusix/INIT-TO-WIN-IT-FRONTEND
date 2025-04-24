@@ -24,7 +24,6 @@ import { Table, TableBody, TableCell, TableRow } from '@/components/ui/table';;
 const Dashboard = () => {
   const navigate = useNavigate();
   const { user, resetOnboarding } = useUser();
-
   const handleNavigate = (path: string) => {
     navigate(path);
   };
@@ -168,7 +167,6 @@ const Dashboard = () => {
              </TableBody>
            </Table>
          </div>
-
         <div className="pt-8">
           <AlertDialog>
             <AlertDialogTrigger asChild>
@@ -196,6 +194,7 @@ const Dashboard = () => {
               </AlertDialogFooter>
             </AlertDialogContent>
           </AlertDialog>
+
         </div>
       </div>
     </div>
