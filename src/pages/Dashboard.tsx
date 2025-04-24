@@ -196,6 +196,13 @@ const Dashboard = () => {
           </AlertDialog>
 
         </div>
+
+        <Button 
+          onClick={() => navigate('/Crisis-support')}
+          className="w-full py-6 text-base"
+        >
+          Crisis Support Mode
+        </Button>
       </div>
     </div>
   );
