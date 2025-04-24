@@ -2,6 +2,11 @@
 import React from 'react';
 import { MoodState, PetType } from '../types';
 import { cn } from '@/lib/utils';
+import Lottie from "lottie-react";
+import sleepingDogAnimation from "../components/Sleeping-dog.json";
+import HappyDogAnimation from "../components/Happy-dog.json";
+import sleepingCatAnimation from "../components/Sleepy-cat.json";
+import HappyCatAnimation from "../components/Happy-cat.json";
 
 interface PetAvatarProps {
   type: PetType;
@@ -20,9 +25,15 @@ const PetAvatar: React.FC<PetAvatarProps> = ({ type, mood, name, size = 'md', an
 
   const getEmoji = () => {
     if (type === 'cat') {
-      return mood === 'tired' ? '😿' : mood === 'neutral' ? '😺' : '😸';
+      if (mood === 'tired') {
+        return <Lottie animationData={sleepingCatAnimation} loop style={{ width: 250, height: 250 }} />;
+      }
+      return <Lottie animationData={HappyCatAnimation} loop style={{ width: 250, height: 250 }} />;
     } else if (type === 'dog') {
-      return mood === 'tired' ? '🐶' : mood === 'neutral' ? '🐕' : '🐶';
+        if (mood === 'tired') {
+        return <Lottie animationData={sleepingDogAnimation} loop style={{ width: 250, height: 250 }} />;
+      }
+      return <Lottie animationData={HappyDogAnimation} loop style={{ width: 250, height: 250 }} />;
     } else if (type === 'bunny') {
       return mood === 'tired' ? '🐰' : mood === 'neutral' ? '🐇' : '🐰';
     } else {
