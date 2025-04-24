@@ -169,6 +169,13 @@ const Dashboard = () => {
            </Table>
          </div>
 
+        <Button 
+          onClick={() => navigate('/Crisis-support')}
+          className="w-full py-6 text-base"
+        >
+          Crisis Support Mode
+        </Button>
+
         <div className="pt-8">
           <AlertDialog>
             <AlertDialogTrigger asChild>
@@ -197,13 +204,6 @@ const Dashboard = () => {
             </AlertDialogContent>
           </AlertDialog>
         </div>
-
-        <Button 
-          onClick={() => navigate('/Crisis-support')}
-          className="w-full py-6 text-base"
-        >
-          Crisis Support Mode
-        </Button>
       </div>
     </div>
   );
