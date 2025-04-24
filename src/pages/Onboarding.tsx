@@ -1,5 +1,5 @@
 
-import React, { useState } from 'react';
+import React, { useState,  useEffect  } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardFooter, CardHeader, CardTitle } from '@/components/ui/card';
@@ -57,28 +57,21 @@ const getPageText = (): string => {
   return document.body.innerText || "";
 };
 
-const App: React.FC = () => {
-  const [ttsEnabled, setTtsEnabled] = useState<boolean>(false);
+const [ttsEnabled, setTtsEnabled] = useState<boolean>(false);
 
-  useEffect(() => {
-    if (ttsEnabled) {
-      const text = getPageText();
-      if (text.trim()) {
-        speakWithElevenLabs(text);
-      }
+useEffect(() => {
+  if (ttsEnabled) {
+    const text = getPageText();
+    if (text.trim()) {
+      speakWithElevenLabs(text);
     }
-    // Optionally, stop playback when toggled off (not implemented here)
-  }, [ttsEnabled]);
+  }
+}, [ttsEnabled]);
 
-  return (
-    <div>
-      <TtsToggle enabled={ttsEnabled} onToggle={setTtsEnabled} />
-    </div>
-  );
-};
 
-  const renderWelcome = () => (
-    <div className="flex flex-col items-center justify-center min-h-[80vh] p-4">
+
+const renderWelcome = () => (
+  <div className="flex flex-col items-center justify-center min-h-[80vh] p-4">
       <Card className="w-full max-w-md">
         <CardHeader className="text-center">
           <CardTitle className="text-2xl">Welcome to Mindful Companion</CardTitle>
@@ -247,14 +240,24 @@ const App: React.FC = () => {
     );
   };
 
-  switch (currentStep) {
-    case OnboardingStep.WELCOME:
-      return renderWelcome();
-    case OnboardingStep.PET_SELECTION:
-      return renderPetSelection();
-    case OnboardingStep.QUIZ:
-      return renderQuiz();
-  }
+  
+  return (
+    <>
+      <TtsToggle enabled={ttsEnabled} onToggle={setTtsEnabled} />
+      {(() => {
+        switch (currentStep) {
+          case OnboardingStep.WELCOME:
+            return renderWelcome();
+          case OnboardingStep.PET_SELECTION:
+            return renderPetSelection();
+          case OnboardingStep.QUIZ:
+            return renderQuiz();
+        }
+      })()}
+    </>
+  );
 };
+  
+
 
 export default Onboarding;

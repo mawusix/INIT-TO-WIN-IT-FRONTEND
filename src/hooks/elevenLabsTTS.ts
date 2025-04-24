@@ -1,10 +1,10 @@
 // WARNING: Never expose your real API key in production frontend code!
 const ELEVENLABS_API_KEY = "sk_9c8440ffc5f169e96a16cff82baa9c41319294bb5ba3eaae";
-const VOICE_ID = "EXAVITQu4vr4xnSDxMaL"; // Example voice
+const VOICE_ID = "9BWtsMINqrJLrRacOk9x"; // Example voice
 
 export async function speakWithElevenLabs(text: string): Promise<void> {
   const response = await fetch(
-    `https://api.elevenlabs.io/v1/text-to-speech/${VOICE_ID}`,
+    `https://api.elevenlabs.io/v1/text-to-speech/9BWtsMINqrJLrRacOk9x`,
     {
       method: "POST",
       headers: {
