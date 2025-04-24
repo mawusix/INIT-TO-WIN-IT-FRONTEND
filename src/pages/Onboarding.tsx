@@ -9,6 +9,8 @@ import { RadioGroup, RadioGroupItem } from '@/components/ui/radio-group';
 import { quizQuestions } from '@/data/quizQuestions';
 import { useUser } from '@/context/UserContext';
 import logo from "../components/mindful circle.png";
+import TtsToggle from "@/components/ui/TtsToggle";
+import { speakWithElevenLabs } from "@/hooks/elevenLabsTTS";
 
 enum OnboardingStep {
   WELCOME,
@@ -48,6 +50,32 @@ const Onboarding = () => {
       navigate('/dashboard');
     }
   };
+
+
+const getPageText = (): string => {
+  // Grabs all visible text from the body
+  return document.body.innerText || "";
+};
+
+const App: React.FC = () => {
+  const [ttsEnabled, setTtsEnabled] = useState<boolean>(false);
+
+  useEffect(() => {
+    if (ttsEnabled) {
+      const text = getPageText();
+      if (text.trim()) {
+        speakWithElevenLabs(text);
+      }
+    }
+    // Optionally, stop playback when toggled off (not implemented here)
+  }, [ttsEnabled]);
+
+  return (
+    <div>
+      <TtsToggle enabled={ttsEnabled} onToggle={setTtsEnabled} />
+    </div>
+  );
+};
 
   const renderWelcome = () => (
     <div className="flex flex-col items-center justify-center min-h-[80vh] p-4">

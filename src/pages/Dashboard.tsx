@@ -169,7 +169,7 @@ const Dashboard = () => {
          </div>
 
         <Button 
-          onClick={() => navigate('/Crisis-support')}
+          onClick={() => handleNavigate('/CrisisSupport')}
           className="w-full py-6 text-base"
         >
           Crisis Support Mode

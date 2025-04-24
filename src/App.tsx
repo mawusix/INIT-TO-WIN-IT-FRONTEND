@@ -11,6 +11,7 @@ import SuggestedAction from "./pages/SuggestedAction";
 import Summary from "./pages/Summary";
 import NotFound from "./pages/NotFound";
 import Journaling from "./pages/Journaling";
+import CrisisSupport from "./pages/Crisis-support";
 import { useUser } from "@/context/UserContext";
 
 const queryClient = new QueryClient();
@@ -36,6 +37,7 @@ const AppRoutes = () => {
       <Route path="/action/:category" element={<ProtectedRoute><SuggestedAction /></ProtectedRoute>} />
       <Route path="/summary" element={<ProtectedRoute><Summary /></ProtectedRoute>} />
       <Route path="/journaling" element={<ProtectedRoute><Journaling /></ProtectedRoute>} />
+      <Route path="/CrisisSupport" element={<ProtectedRoute><CrisisSupport /></ProtectedRoute>} />
       <Route path="*" element={<NotFound />} />
     </Routes>
   );
