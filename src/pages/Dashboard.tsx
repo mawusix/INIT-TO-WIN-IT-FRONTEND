@@ -106,6 +106,15 @@ const Dashboard = () => {
             Check in with how you're feeling
           </Button>
 
+          <div className="mt-8">
+            <Button 
+              onClick={() => handleNavigate('/Crisis-support')}
+              className="w-full"
+            >
+              Crisis Support Mode
+            </Button>
+          </div>
+
           {user.pendingAction && (
             <Card className="border-dashed">
               <CardContent className="p-4">
@@ -168,13 +177,6 @@ const Dashboard = () => {
              </TableBody>
            </Table>
          </div>
-
-        <Button 
-          onClick={() => navigate('/Crisis-support')}
-          className="w-full py-6 text-base"
-        >
-          Crisis Support Mode
-        </Button>
 
         <div className="pt-8">
           <AlertDialog>
