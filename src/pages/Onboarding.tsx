@@ -8,6 +8,7 @@ import { Label } from '@/components/ui/label';
 import { RadioGroup, RadioGroupItem } from '@/components/ui/radio-group';
 import { quizQuestions } from '@/data/quizQuestions';
 import { useUser } from '@/context/UserContext';
+import logo from "../components/mindful circle.png";
 
 
 enum OnboardingStep {
@@ -58,8 +59,8 @@ const Onboarding = () => {
         <CardContent className="text-center space-y-4">
           <p className="text-muted-foreground">Let's start your journey to feeling more in control.</p>
           <div className="py-6">
-            <div className="w-24 h-24 bg-primary/20 rounded-full flex items-center justify-center mx-auto">
-              <span className="text-4xl">🌱</span>
+            <div className="w-100 h-100 20 rounded-full flex items-center justify-center mx-auto">
+            <img src={logo} alt="Logo" className="w-100 h-150 object-contain" />
             </div>
           </div>
         </CardContent>
