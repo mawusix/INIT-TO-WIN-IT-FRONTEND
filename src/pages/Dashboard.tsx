@@ -18,10 +18,16 @@ import PetMessage from '@/components/PetMessage';
 import ProgressRing from '@/components/ProgressRing';
 import { useUser } from '@/context/UserContext';
 import { RotateCcw } from 'lucide-react';
+import { Table, TableBody, TableCell, TableRow } from '@/components/ui/table';;
+ import { FileText, Activity, Heart, BookOpen } from "lucide-react";
 
 const Dashboard = () => {
   const navigate = useNavigate();
   const { user, resetOnboarding } = useUser();
+
+  const handleNavigate = (path: string) => {
+    navigate(path);
+  };
   
   if (!user.pet) {
     navigate('/');
@@ -115,45 +121,81 @@ const Dashboard = () => {
               </CardContent>
             </Card>
           )}
+        </div>
+          <div className="mt-8">
+           <Table>
+             <TableBody>
+               <TableRow>
+                 <TableCell className="p-2">
+                    <Card 
+                      className="p-4 hover:bg-accent cursor-pointer transition-colors text-center"
+                      onClick={() => handleNavigate('/summary')}
+                    >
+                     <FileText className="h-6 w-6 mx-auto mb-2" />
+                     <span>Summary</span>
+                   </Card>
+                 </TableCell>
+                 <TableCell className="p-2">
+                  <Card 
+                      className="p-4 hover:bg-accent cursor-pointer transition-colors text-center"
+                      onClick={() => handleNavigate('/progress')}
+                    >
+                     <Activity className="h-6 w-6 mx-auto mb-2" />
+                     <span>Progress</span>
+                   </Card>
+                 </TableCell>
+               </TableRow>
+               <TableRow>
+                 <TableCell className="p-2">
+                  <Card 
+                      className="p-4 hover:bg-accent cursor-pointer transition-colors text-center"
+                      onClick={() => handleNavigate('/actions')}
+                    >
+                     <Heart className="h-6 w-6 mx-auto mb-2" />
+                     <span>Actions</span>
+                   </Card>
+                 </TableCell>
+                 <TableCell className="p-2">
+                  <Card 
+                      className="p-4 hover:bg-accent cursor-pointer transition-colors text-center"
+                      onClick={() => handleNavigate('/journaling')}
+                    >
+                     <BookOpen className="h-6 w-6 mx-auto mb-2" />
+                     <span>Journal</span>
+                   </Card>
+                 </TableCell>
+               </TableRow>
+             </TableBody>
+           </Table>
+         </div>
 
-          <div className="pt-4">
-            <Button 
-              onClick={() => navigate('/summary')}
-              variant="ghost" 
-              className="w-full"
-            >
-              View weekly summary
-            </Button>
-          </div>
-
-          <div className="pt-8">
-            <AlertDialog>
-              <AlertDialogTrigger asChild>
-                <Button 
-                  variant="ghost" 
-                  className="w-full text-destructive hover:text-destructive"
-                >
-                  <RotateCcw className="mr-2 h-4 w-4" />
-                  Reset App
-                </Button>
-              </AlertDialogTrigger>
-              <AlertDialogContent>
-                <AlertDialogHeader>
-                  <AlertDialogTitle>Are you sure?</AlertDialogTitle>
-                  <AlertDialogDescription>
-                    This will reset all your progress, including your pet, mood history, and completed actions.
-                    This action cannot be undone.
-                  </AlertDialogDescription>
-                </AlertDialogHeader>
-                <AlertDialogFooter>
-                  <AlertDialogCancel>Cancel</AlertDialogCancel>
-                  <AlertDialogAction onClick={handleReset} className="bg-destructive text-destructive-foreground hover:bg-destructive/90">
-                    Reset
-                  </AlertDialogAction>
-                </AlertDialogFooter>
-              </AlertDialogContent>
-            </AlertDialog>
-          </div>
+        <div className="pt-8">
+          <AlertDialog>
+            <AlertDialogTrigger asChild>
+              <Button 
+                variant="ghost" 
+                className="w-full text-destructive hover:text-destructive"
+              >
+                <RotateCcw className="mr-2 h-4 w-4" />
+                Reset App
+              </Button>
+            </AlertDialogTrigger>
+            <AlertDialogContent>
+              <AlertDialogHeader>
+                <AlertDialogTitle>Are you sure?</AlertDialogTitle>
+                <AlertDialogDescription>
+                  This will reset all your progress, including your pet, mood history, and completed actions.
+                  This action cannot be undone.
+                </AlertDialogDescription>
+              </AlertDialogHeader>
+              <AlertDialogFooter>
+                <AlertDialogCancel>Cancel</AlertDialogCancel>
+                <AlertDialogAction onClick={handleReset} className="bg-destructive text-destructive-foreground hover:bg-destructive/90">
+                  Reset
+                </AlertDialogAction>
+              </AlertDialogFooter>
+            </AlertDialogContent>
+          </AlertDialog>
         </div>
       </div>
     </div>

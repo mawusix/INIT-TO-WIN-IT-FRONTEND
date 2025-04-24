@@ -62,6 +62,9 @@ const Onboarding = () => {
             <div className="w-24 h-24 bg-primary/20 rounded-full flex items-center justify-center mx-auto">
               <span className="text-4xl">🌱</span>
             </div>
+            <div className="bg-green-100 text-purple-700 rounded-md p-4 mt-4">
+             <p>Begin your wellness journey with a personal pet companion who will help you track and improve your mental wellbeing.</p>
+           </div>
           </div>
         </CardContent>
         <CardFooter>
