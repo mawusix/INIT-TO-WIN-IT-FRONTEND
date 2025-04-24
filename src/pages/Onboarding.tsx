@@ -8,6 +8,7 @@ import { Label } from '@/components/ui/label';
 import { RadioGroup, RadioGroupItem } from '@/components/ui/radio-group';
 import { quizQuestions } from '@/data/quizQuestions';
 import { useUser } from '@/context/UserContext';
+import Lottie from "lottie-react";
 
 enum OnboardingStep {
   WELCOME,
