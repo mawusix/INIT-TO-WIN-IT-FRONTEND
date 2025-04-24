@@ -8,8 +8,7 @@ import { Label } from '@/components/ui/label';
 import { RadioGroup, RadioGroupItem } from '@/components/ui/radio-group';
 import { quizQuestions } from '@/data/quizQuestions';
 import { useUser } from '@/context/UserContext';
-import Lottie from "lottie-react";
-import sleepingDogAnimation from "../components/Sleeping-dog.json";
+
 
 enum OnboardingStep {
   WELCOME,
@@ -137,6 +136,26 @@ const Onboarding = () => {
                 >
                   <span className="text-4xl">🦊</span>
                   <span className="mt-2 font-normal">Fox</span>
+                </Label>
+              </div>
+              <div>
+                <RadioGroupItem value="snake" id="snake" className="peer sr-only" />
+                <Label
+                  htmlFor="fox"
+                  className="flex flex-col items-center justify-between rounded-md border-2 border-muted bg-popover p-4 hover:bg-accent hover:text-accent-foreground peer-data-[state=checked]:border-primary [&:has([data-state=checked])]:border-primary"
+                >
+                  <span className="text-4xl">🐍</span>
+                  <span className="mt-2 font-normal">Snake</span>
+                </Label>
+              </div>
+              <div>
+                <RadioGroupItem value="fish" id="fish" className="peer sr-only" />
+                <Label
+                  htmlFor="fox"
+                  className="flex flex-col items-center justify-between rounded-md border-2 border-muted bg-popover p-4 hover:bg-accent hover:text-accent-foreground peer-data-[state=checked]:border-primary [&:has([data-state=checked])]:border-primary"
+                >
+                  <span className="text-4xl">🐠</span>
+                  <span className="mt-2 font-normal">Fish</span>
                 </Label>
               </div>
             </RadioGroup>
