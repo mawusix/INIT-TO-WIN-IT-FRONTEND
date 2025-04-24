@@ -39,6 +39,7 @@ const SuggestedAction = () => {
           title={action.title}
           description={action.description}
           duration={action.duration}
+          onComplete={handleAcceptAction}
         />
         
         <div className="flex flex-col gap-2 w-full pt-4">

@@ -6,6 +6,8 @@
   ],
   "compilerOptions": {
     "baseUrl": ".",
+    "resolveJsonModule": true,
+    "esModuleInterop": true,
     "paths": {
       "@/*": ["./src/*"]
     },
@@ -15,6 +17,5 @@
     "allowJs": true,
     "noUnusedLocals": false,
     "strictNullChecks": false
-    
   }
 }

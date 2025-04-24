@@ -2,17 +2,28 @@ import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Card, CardContent } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
+import {
+  AlertDialog,
+  AlertDialogAction,
+  AlertDialogCancel,
+  AlertDialogContent,
+  AlertDialogDescription,
+  AlertDialogFooter,
+  AlertDialogHeader,
+  AlertDialogTitle,
+  AlertDialogTrigger,
+} from "@/components/ui/alert-dialog";
 import PetAvatar from '@/components/PetAvatar';
 import PetMessage from '@/components/PetMessage';
 import ProgressRing from '@/components/ProgressRing';
 import { useUser } from '@/context/UserContext';
-import { Table, TableBody, TableCell, TableRow } from '@/components/ui/table';
- import { Card } from '@/components/ui/card';
+import { RotateCcw } from 'lucide-react';
+import { Table, TableBody, TableCell, TableRow } from '@/components/ui/table';;
  import { FileText, Activity, Heart, BookOpen } from "lucide-react";
 
 const Dashboard = () => {
   const navigate = useNavigate();
-  const { user } = useUser();
+  const { user, resetOnboarding } = useUser();
 
   const handleNavigate = (path: string) => {
     navigate(path);
@@ -30,6 +41,11 @@ const Dashboard = () => {
   // Get completed actions count for today
   const today = new Date().toISOString().split('T')[0];
   const todayActions = user.completedActions.filter(action => action.date === today).length;
+
+  const handleReset = () => {
+    resetOnboarding();
+    navigate('/');
+  };
 
   return (
     <div className="min-h-screen bg-background px-4 py-8 space-y-6">
@@ -105,7 +121,7 @@ const Dashboard = () => {
               </CardContent>
             </Card>
           )}
-
+        </div>
           <div className="mt-8">
            <Table>
              <TableBody>
@@ -152,6 +168,34 @@ const Dashboard = () => {
              </TableBody>
            </Table>
          </div>
+
+        <div className="pt-8">
+          <AlertDialog>
+            <AlertDialogTrigger asChild>
+              <Button 
+                variant="ghost" 
+                className="w-full text-destructive hover:text-destructive"
+              >
+                <RotateCcw className="mr-2 h-4 w-4" />
+                Reset App
+              </Button>
+            </AlertDialogTrigger>
+            <AlertDialogContent>
+              <AlertDialogHeader>
+                <AlertDialogTitle>Are you sure?</AlertDialogTitle>
+                <AlertDialogDescription>
+                  This will reset all your progress, including your pet, mood history, and completed actions.
+                  This action cannot be undone.
+                </AlertDialogDescription>
+              </AlertDialogHeader>
+              <AlertDialogFooter>
+                <AlertDialogCancel>Cancel</AlertDialogCancel>
+                <AlertDialogAction onClick={handleReset} className="bg-destructive text-destructive-foreground hover:bg-destructive/90">
+                  Reset
+                </AlertDialogAction>
+              </AlertDialogFooter>
+            </AlertDialogContent>
+          </AlertDialog>
         </div>
       </div>
     </div>
