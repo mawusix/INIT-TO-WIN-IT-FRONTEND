@@ -1,0 +1,117 @@
+import React from 'react';
+import { useNavigate } from 'react-router-dom';
+import { Card, CardContent } from '@/components/ui/card';
+import { Button } from '@/components/ui/button';
+import PetAvatar from '@/components/PetAvatar';
+import PetMessage from '@/components/PetMessage';
+import ProgressRing from '@/components/ProgressRing';
+import { useUser } from '@/context/UserContext';
+
+const Dashboard = () => {
+  const navigate = useNavigate();
+  const { user } = useUser();
+  
+  if (!user.pet) {
+    navigate('/');
+    return null;
+  }
+
+  // Calculate XP progress percentage
+  const xpNeededForNextLevel = user.pet.level * 100;
+  const xpProgress = Math.min(Math.round((user.pet.xp / xpNeededForNextLevel) * 100), 100);
+
+  // Get completed actions count for today
+  const today = new Date().toISOString().split('T')[0];
+  const todayActions = user.completedActions.filter(action => action.date === today).length;
+
+  return (
+    <div className="min-h-screen bg-background px-4 py-8 space-y-6">
+      <div className="container max-w-md mx-auto">
+        <div className="flex justify-between items-center mb-6">
+          <div className="flex items-center">
+            <ProgressRing progress={xpProgress} size={44} strokeWidth={4}>
+              <span className="text-xs font-semibold">{user.pet.level}</span>
+            </ProgressRing>
+            <div className="ml-2">
+              <p className="text-sm font-medium">Level {user.pet.level}</p>
+              <p className="text-xs text-muted-foreground">{user.pet.xp} / {xpNeededForNextLevel} XP</p>
+            </div>
+          </div>
+          <div className="text-right">
+            <p className="text-sm font-medium">{todayActions} actions today</p>
+          </div>
+        </div>
+
+        <div className="space-y-6">
+          <div className="flex flex-col items-center space-y-4">
+            <PetAvatar
+              type={user.pet.type as any}
+              mood={user.pet.mood}
+              name={user.pet.name}
+              size="lg"
+            />
+            <PetMessage
+              petName={user.pet.name}
+              petType={user.pet.type as any}
+              mood={user.pet.mood}
+              className="w-full max-w-md"
+            />
+          </div>
+
+          <Card className="bg-primary/10 border-none shadow-sm">
+            <CardContent className="p-4">
+              <div className="flex items-center justify-between">
+                <p className="text-sm">Today's mood check-in</p>
+                {user.moodHistory.some(entry => entry.date === today) ? (
+                  <span className="text-xs bg-primary/20 text-primary-foreground px-2 py-0.5 rounded-full">
+                    Completed
+                  </span>
+                ) : (
+                  <span className="text-xs bg-secondary/20 text-secondary-foreground px-2 py-0.5 rounded-full">
+                    Pending
+                  </span>
+                )}
+              </div>
+            </CardContent>
+          </Card>
+
+          <Button 
+            onClick={() => navigate('/check-in')}
+            className="w-full py-6 text-base"
+            variant={user.moodHistory.some(entry => entry.date === today) ? "outline" : "default"}
+          >
+            Check in with how you're feeling
+          </Button>
+
+          {user.pendingAction && (
+            <Card className="border-dashed">
+              <CardContent className="p-4">
+                <div className="flex items-center justify-between">
+                  <div>
+                    <h3 className="font-medium">Pending Action</h3>
+                    <p className="text-sm text-muted-foreground">{user.pendingAction.title}</p>
+                  </div>
+                  <Button variant="secondary" size="sm" onClick={() => navigate('/journaling')}>
+                    Complete
+                  </Button>
+                </div>
+              </CardContent>
+            </Card>
+          )}
+
+          <div className="pt-4">
+            <Button 
+              onClick={() => navigate('/summary')}
+              variant="ghost" 
+              className="w-full"
+            >
+              View weekly summary
+            </Button>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+};
+
+export default Dashboard;
