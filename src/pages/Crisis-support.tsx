@@ -84,20 +84,26 @@ const CrisisSupport = () => {
         {/* Support Resources */}
         {expandedOption === 'stress' && selectedSubOption && (
           <Card className="p-4 mt-6 bg-primary/10 border-none">
-            <p className="text-sm font-medium mb-2">Helpful Resources for {selectedSubOption} Stress:</p>
+            <p className="text-sm font-medium mb-2">Helpful Resources for {selectedSubOption} related stress management:</p>
             <CardContent className="space-y-2">
-              <div className="flex items-center justify-between text-sm">
-                <span>Support Link 1</span>
+              <a 
+                href="https://www.acas.org.uk/managing-work-related-stress" 
+                target="_blank" 
+                rel="noopener noreferrer"
+                className="flex items-center justify-between text-sm hover:underline"
+              >
+                  <span>Managing work related stress</span>
+                  <ExternalLink size={16} className="text-primary" />
+              </a>
+              <a 
+              href="https://www.mind.org.uk/information-support/tips-for-everyday-living/how-to-be-mentally-healthy-at-work/work-and-stress/" 
+              target="_blank" 
+              rel="noopener noreferrer"
+              className="flex items-center justify-between text-sm hover:underline"
+            >
+                <span>How to be mentally healthy at work</span>
                 <ExternalLink size={16} className="text-primary" />
-              </div>
-              <div className="flex items-center justify-between text-sm">
-                <span>Support Link 2</span>
-                <ExternalLink size={16} className="text-primary" />
-              </div>
-              <div className="flex items-center justify-between text-sm">
-                <span>Support Link 3</span>
-                <ExternalLink size={16} className="text-primary" />
-              </div>
+            </a>
             </CardContent>
           </Card>
         )}
