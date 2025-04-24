@@ -10,7 +10,6 @@ import { quizQuestions } from '@/data/quizQuestions';
 import { useUser } from '@/context/UserContext';
 import logo from "../components/mindful circle.png";
 
-
 enum OnboardingStep {
   WELCOME,
   PET_SELECTION,
@@ -62,6 +61,9 @@ const Onboarding = () => {
             <div className="w-100 h-100 20 rounded-full flex items-center justify-center mx-auto">
             <img src={logo} alt="Logo" className="w-100 h-150 object-contain" />
             </div>
+            <div className="bg-green-100 text-purple-700 rounded-md p-4 mt-4">
+             <p>Begin your wellness journey with a personal pet companion who will help you track and improve your mental wellbeing.</p>
+           </div>
           </div>
         </CardContent>
         <CardFooter>
